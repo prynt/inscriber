@@ -5,7 +5,7 @@ describe Inscriber::Exporter do
     Inscriber::TestDatabase.setup do
       create_table :test_translations do
         primary_key :id
-        string :test_id
+        integer :test_id
         string :body
         string :locale
       end

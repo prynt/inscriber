@@ -9,8 +9,9 @@ module Inscriber
           username: '',
           password: '',
           source_lang: 'en',
-          file_name: 'test.yml',
+          file_name: 'test',
           input_dir: '.',
+          output_dir: '.',
           tables: [
             {
               name: 'test_translations',

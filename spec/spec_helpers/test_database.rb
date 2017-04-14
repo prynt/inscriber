@@ -3,6 +3,23 @@ require 'rspec'
 require 'spec_helpers/config_helpers'
 
 module Inscriber
+  # The TestDatabase is responsible for creating a SQLite database with tables and columns for testing.
+  # It is dumped after every example. To create a database, use the following format:
+  #
+  # Inscriber::TestDatabase.setup do
+  #   create_table :test do
+  #     primary_key :id
+  #     string :body
+  #     integer :test_app_id
+  #   end
+  # end
+  #
+  # Inscriber::TestDatabase.setup will return an instance of Inscriber::Database, which can be used for testing:
+  # database = Inscriber::TestDatabase.setup
+  # it 'should do something' do
+  #   Inscriber::Downloader.new(database).download
+  # end
+  #
   class TestDatabase
     class << self
       def setup(&block)

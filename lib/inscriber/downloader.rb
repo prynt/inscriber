@@ -10,9 +10,8 @@ module Inscriber
 
     def download
       @database.tables.each do |table|
-        @result_hash[table[:name]] = records_from_table(table[:name]).map do |record|
-          generate_hash_from_record(record, table)
-        end
+        records = records_from_table(table[:name]).all
+        @result_hash[table[:name]] = records.map{ |record| generate_hash_from_record(record, table) } if records.length > 0
       end
       @result_hash
     end

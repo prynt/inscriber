@@ -21,7 +21,7 @@ describe Inscriber::Config do
     it 'loads object from inscriber.yml' do
       expect(data[:adapter]).to eq('sqlite')  
       expect(data[:host]).to eq('localhost')  
-      expect(data[:database_name]).to eq('test')  
+      expect(data[:database_name]).to eq('test.sqlite')
       file.close
       file.unlink
     end

@@ -14,9 +14,9 @@ module Inscriber
       @username      = options.fetch(:username, '')
       @password      = options.fetch(:password, '')
       @source_lang   = options.fetch(:source_lang, 'en')
-      @output_dir    = options.fetch(:output_dir, 'config/locales')
-      @input_dir     = options.fetch(:input_dir, :output_dir)
-      @file_name     = options.fetch(:file_name, 'output.yml')
+      @output_dir    = options.fetch(:output_dir, '.')
+      @input_dir     = options.fetch(:input_dir, @output_dir)
+      @file_name     = options.fetch(:file_name, 'translations')
       @tables        = options.fetch(:tables, nil)
       @locales       = options.fetch(:locales, nil)
     end

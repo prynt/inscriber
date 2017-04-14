@@ -6,7 +6,7 @@ describe Inscriber::Inserter do
     Inscriber::TestDatabase.setup do
       create_table :test_translations do
         primary_key :id
-        string :test_id
+        integer :test_id
         string :body
         string :locale
       end
@@ -27,7 +27,7 @@ describe Inscriber::Inserter do
   end
 
   let!(:translated_file) do
-    File.open('fr.test.yml', 'w') { |f| f.write config.to_yaml }
+    File.open('test.fr.yml', 'w') { |f| f.write config.to_yaml }
   end
 
   let(:db) do
