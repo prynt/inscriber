@@ -1,0 +1,15 @@
+adapter: 'postgres'
+host: 'localhost'
+port: 5432
+database_name: 'prynt'
+source_lang: 'en'
+output_dir: 'config/locales/'
+input_dir: '.'
+file_name: 'transifex.yml'
+tables:
+- name: 'app_tip_translations'
+  columns:
+  - body
+locales:
+- fr
+- jp 
