@@ -2,13 +2,9 @@ module Inscriber
   class Exporter
     class << self
       def export(database)
-        begin
-          data = { "#{database.source_lang}" => download_from_db(database) }
-          File.open("#{database.output_dir}/#{database.file_name}", "w") { |f| f.write data.to_yaml }
-          { status: true }
-        rescue => e
-          { status: false, error: e }
-        end
+        data = { "#{database.source_lang}" => download_from_db(database) }
+        File.open("#{database.output_dir}/#{database.file_name}.yml", "w") { |f| f.write data.to_yaml }
+        { status: true }
       end
       
       private

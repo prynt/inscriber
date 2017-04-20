@@ -16,14 +16,19 @@ describe Inscriber::Inserter do
   let!(:config) do
     {
       "fr" => {
-        "test_translations" => [
-          {
-            "body" => "Chaîne de test",
-            "test_id" => 1
+        "test_translations" => { 
+          1 => {
+            "body" => "Chaîne de test"
           }
-        ]
+        }
       }
     }
+  end
+
+  let! :file do
+    database.connection.from(:test_translations).insert(:body => 'test string', :test_id => 1, :locale => 'en')
+    Inscriber::Exporter.export(database)
+    "#{database.file_name}.yml"
   end
 
   let!(:translated_file) do
@@ -39,10 +44,11 @@ describe Inscriber::Inserter do
       Inscriber::Inserter.insert(database)
       query = { 
         :locale => config.keys.first, 
-        :body => config["fr"]["test_translations"].first["body"]
+        :body => config["fr"]["test_translations"].values.first["body"]
       }
       expect(db.where(query).all.length).to be 1
-      File.unlink('fr.test.yml')
+      File.unlink('test.fr.yml')
+      File.unlink('test.yml')
     end
   end
 end

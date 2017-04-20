@@ -15,7 +15,7 @@ describe Inscriber::Exporter do
   let :file do
     database.connection.from(:test_translations).insert(:body => 'test string', :test_id => 1, :locale => 'en')
     Inscriber::Exporter.export(database)
-    database.file_name
+    "#{database.file_name}.yml"
   end
 
   describe '.export' do
@@ -28,7 +28,7 @@ describe Inscriber::Exporter do
     it 'should have the data in the yml file' do
       expect(data.has_key? "en").to be true
       expect(data["en"].has_key? "test_translations").to be true
-      expect(data["en"]["test_translations"].first["body"]).to eq 'test string'
+      expect(data["en"]["test_translations"].values.first["body"]).to eq 'test string'
       File.unlink(file)
     end
   end

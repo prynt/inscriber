@@ -10,8 +10,14 @@ module Inscriber
 
     def download
       @database.tables.each do |table|
+        record_hash = Hash.new(0)
         records = records_from_table(table[:name]).all
-        @result_hash[table[:name]] = records.map{ |record| generate_hash_from_record(record, table) } if records.length > 0
+        unless records.empty?
+          records.each do |record|
+            record_hash[record[:id]] = generate_hash_from_record(record, table)
+          end
+          @result_hash[table[:name]] = record_hash
+        end
       end
       @result_hash
     end
@@ -28,7 +34,7 @@ module Inscriber
 
     def generate_hash_from_record(record, table)
       record.select{ |k,v| table[:columns].include? k.to_s }
-        .merge(original_column_name(table[:name]) => record[original_column_name(table[:name])])
+        .merge(original_column_name(table[:name]).to_s => record[original_column_name(table[:name])])
         .inject({}){ |h, (k,v)| h[k.to_s] = v; h }.to_h
     end
   end

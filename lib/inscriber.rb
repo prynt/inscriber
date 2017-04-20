@@ -10,15 +10,23 @@ require 'inscriber/inserter'
 module Inscriber
   class << self
     def export 
-      @config ||= Inscriber::Config.data
-      @database ||= Inscriber::Database.new(@config)
-      Inscriber::Exporter.export(@database)
+      begin
+        @config ||= Inscriber::Config.data
+        @database ||= Inscriber::Database.new(@config)
+        Inscriber::Exporter.export(@database)
+      rescue => e
+        { status: false, error: e }
+      end
     end
 
     def insert
-      @config ||= Inscriber::Config.data
-      @database ||= Inscriber::Database.new(@config)
-      Inscriber::Inserter.insert(@database)
+      begin
+        @config ||= Inscriber::Config.data
+        @database ||= Inscriber::Database.new(@config)
+        Inscriber::Inserter.insert(@database)
+      rescue => e
+        { status: false, error: e }
+      end
     end
   end
 end

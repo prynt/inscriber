@@ -33,7 +33,7 @@ tables:
   - test_header_id
 locales:
 - fr
-- jp 
+- ja
 ```
 
 - __adapter__ : supports `postgres`, `mysql`, & `sqlite`
