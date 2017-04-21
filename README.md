@@ -23,8 +23,8 @@ host: 'localhost'
 port: 5432
 database_name: 'test'
 source_lang: 'en'
-output_dir: 'config/locales/'
-input_dir: 'config/locales/'
+output_dir: 'config/locales'
+input_dir: 'config/locales'
 file_name: 'test'
 tables:
 - name: 'test_header_translations'
