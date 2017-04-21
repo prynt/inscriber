@@ -3,7 +3,7 @@ module Inscriber
     class << self
       def export(database)
         data = { "#{database.source_lang}" => download_from_db(database) }
-        File.open("#{database.output_dir}/#{database.file_name}.yml", "w") { |f| f.write data.to_yaml }
+        File.open("#{database.output_dir}/#{database.file_name}.#{database.source_lang}.yml", "w") { |f| f.write data.to_yaml }
         { status: true }
       end
       

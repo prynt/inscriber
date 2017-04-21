@@ -8,7 +8,7 @@ module Inscriber
           file_path = "#{database.input_dir}/#{database.file_name}"
           if File.exist? "#{file_path}.#{locale}.yml"
             data          = YAML.load_file("#{file_path}.#{locale}.yml")
-            source_data   = YAML.load_file("#{file_path}.yml")
+            source_data   = YAML.load_file("#{file_path}.#{database.source_lang}.yml")
             records_array = []
 
             data[locale].each do |table, records|

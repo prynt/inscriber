@@ -15,7 +15,7 @@ describe Inscriber::Exporter do
   let :file do
     database.connection.from(:test_translations).insert(:body => 'test string', :test_id => 1, :locale => 'en')
     Inscriber::Exporter.export(database)
-    "#{database.file_name}.yml"
+    "#{database.file_name}.#{database.source_lang}.yml"
   end
 
   describe '.export' do
