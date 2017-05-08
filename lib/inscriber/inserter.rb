@@ -9,9 +9,9 @@ module Inscriber
           if File.exist? "#{file_path}.#{locale}.yml"
             data          = YAML.load_file("#{file_path}.#{locale}.yml")
             source_data   = YAML.load_file("#{file_path}.#{database.source_lang}.yml")
-            records_array = []
 
             data[locale].each do |table, records|
+              records_array = []
               records.each do |k,v|
                 records_array << source_data[database.source_lang][table][k].merge(v)
               end

@@ -23,8 +23,8 @@ host: 'localhost'
 port: 5432
 database_name: 'test'
 source_lang: 'en'
-output_dir: 'config/locales'
-input_dir: 'config/locales'
+output_dir: 'tmp'
+input_dir: 'tmp'
 file_name: 'test'
 tables:
 - name: 'test_header_translations'
@@ -41,8 +41,8 @@ locales:
 - __port__ : port of the database, defaults to `5432`
 - __database_name__ : name of the database
 - __source_lang__ : the language that will serve as your basis for translations, defaults to `en`
-- __output_dir__ : the directory you want Inscriber to export the database data, defaults to current directory (recommend 'config/locales')
-- __input_dir__ : the directory you want Inscriber to read the translated files, defaults to current directory (recommend 'config/locales')
+- __output_dir__ : the directory you want Inscriber to export the database data, defaults to tmp directory
+- __input_dir__ : the directory you want Inscriber to read the translated files, defaults to tmp directory
 - __file_name__ : the name of the yml you want to save from the database (exclude yml extension, this will be added), defaults to `translations`
 - __tables__ : the names and columns of all data you want to be pulled from the database (include any required attributes in the column array)
 - __locales__ : the locales you are going to translate to in Transifex (this must match up with Transifex)
