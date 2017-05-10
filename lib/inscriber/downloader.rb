@@ -14,7 +14,7 @@ module Inscriber
         records = records_from_table(table[:name]).all
         unless records.empty?
           records.each do |record|
-            record_hash[record[:id]] = generate_hash_from_record(record, table)
+            record_hash[record[original_column_name(table[:name])]] = generate_hash_from_record(record, table)
           end
           @result_hash[table[:name]] = record_hash
         end
@@ -34,7 +34,6 @@ module Inscriber
 
     def generate_hash_from_record(record, table)
       record.select{ |k,v| table[:columns].include? k.to_s }
-        .merge(original_column_name(table[:name]).to_s => record[original_column_name(table[:name])])
         .inject({}){ |h, (k,v)| h[k.to_s] = v; h }.to_h
     end
   end

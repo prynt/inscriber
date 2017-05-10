@@ -3,17 +3,17 @@ require 'yaml'
 module Inscriber
   class Inserter
     class << self
+      include TableHelpers
       def insert(database)
         database.locales.each do |locale|
           file_path = "#{database.input_dir}/#{database.file_name}"
           if File.exist? "#{file_path}.#{locale}.yml"
-            data          = YAML.load_file("#{file_path}.#{locale}.yml")
-            source_data   = YAML.load_file("#{file_path}.#{database.source_lang}.yml")
+            data = YAML.load_file("#{file_path}.#{locale}.yml")
 
             data[locale].each do |table, records|
               records_array = []
               records.each do |k,v|
-                records_array << source_data[database.source_lang][table][k].merge(v)
+                records_array << v.merge(original_column_name(table) => k)
               end
               opts = { database: database, table: table, records: records_array, locale: locale }
               upload_data_to_db(opts)

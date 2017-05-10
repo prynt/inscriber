@@ -20,7 +20,7 @@ describe Inscriber::Downloader do
 
       expect(download.keys).to include 'test_translations'
       expect(download['test_translations'].values.first["body"]).to eq 'test string'
-      expect(download['test_translations'].values.first["test_id"]).to eq 1
+      expect(download['test_translations'].keys).to include 1
     end
   end
 end
