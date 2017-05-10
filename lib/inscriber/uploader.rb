@@ -32,7 +32,7 @@ module Inscriber
 
     def update_or_create_record(record)
       row = db_from_table.where(
-        original_column => record[original_column.to_s],
+        original_column => record[original_column],
         :locale => locale) 
 
       if row.empty?
